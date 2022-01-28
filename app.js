@@ -4,7 +4,7 @@ let lost = 0;
 let clicked = false;
 const audio = new Audio("boom.wav");
 
-//GESTIONE DEL CLICK (INCREMENTO PUNTEGGIO E VELOCITA')
+//CLICK MANAGEMENT (INCREASE POINTS)
 function gestPoints() {
     points ++;
     document.getElementById('number').innerHTML = points;
@@ -14,7 +14,7 @@ function gestPoints() {
     audio.play();
   }
 
-// GESTIONE DELL'ANIMAZIONE
+// ANIMATION MANAGEMENT
 function myMove() {
     const elem = document.getElementById("palla");
     let posY = -10;
@@ -22,18 +22,18 @@ function myMove() {
     let interval = setInterval(frame, speed);
 
     function frame() {
-      //CONTROLLA SE LA PALLA E' A FINE SCHERMO E SE LOST==5
+      //CHECK IF THE BALL IT'S AT THE END OF SCREEN AND IF LOST==5
         if (posY == 100 && lost == 5) { 
           clearInterval(interval);
           alert ('GAMEOVER! Il tuo punteggio è ' + points);
-          // CASO IN CUI LA PALLA E' STATA CLICCATA (RIASSEGNA "SPEED" DECREMENTATA A SETINTERVAL)
+          // CASE THE BALL IT'S CLICKED (DECREASE "SPEED" AND SET UPDATE SETINTERVAL)
         } else if (posY == 100 && clicked == true) { 
             clicked = false; // 
             posY = -10;
             posX = Math.floor(Math.random() * 1000); 
             document.getElementById('palla').style = ('opacity:100%;');
             setInterval(frame, (speed+0.1))
-            // CASO IN CUI LA PALLA NON E' STATA CLICCATA (INCREMENTA "LOST")
+            // CASE THE BALL IT'S NOT CLICKED (INCREASE "LOST")
           } else if (posY == 100 && clicked == false) { 
             lost += 1;
             posY = -10;
